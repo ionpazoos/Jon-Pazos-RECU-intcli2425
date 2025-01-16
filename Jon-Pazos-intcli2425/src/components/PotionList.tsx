@@ -5,7 +5,6 @@ import { ScrollMenu } from 'react-horizontal-scrolling-menu';
 
 type Props = {
     potions: Potion[];
-
 };
 
 const Potionlist: React.FC<Props> = ({
