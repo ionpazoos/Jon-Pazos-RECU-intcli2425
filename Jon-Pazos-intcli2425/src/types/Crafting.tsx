@@ -3,6 +3,6 @@ export type crafting = {
     required_level: Number,
     time: {
       unit: String,
-      amount: Number,
+      amount: number,
     },
   }
