@@ -1,12 +1,11 @@
 import React from 'react';
 
 type Props = {
-    name: String;
-    image: String;
-    rarity: String;
-    dropedBy: String;
-    dropPercent: String;
-
+    name: string;
+    image: string;
+    rarity: string;
+    dropedBy: string;
+    dropPercent: string;
 };
 
 const PotionCard: React.FC<Props> = ({
@@ -17,18 +16,40 @@ const PotionCard: React.FC<Props> = ({
     dropPercent,
 }) => {
     return (
-        <div className='px-20 '>
-            <div className=" flex  w-[200px] h-[200px] rounded shadow-lg hover:-translate-y-10 items-center">
-                <img className="w-[90%] rounded-md" src={`${image}`} alt="image" />
-                <div className=" py-6">
-                    <div className="font-bold text-xl mb-2">Name:{name}</div>
-                    <p className="text-gray-100 text-base">Rarity:{rarity}</p>
-                    <p className="text-gray-100 text-base">Dropedby:{dropedBy}</p>
-                    <p className="text-gray-100 text-base">DropPercent:{dropPercent}</p>
+        <div className="p-6 flex justify-center items-center">
+            <div className="relative w-[250px] h-[350px] rounded-lg border border-white bg-gradient-to-br from-gray-800 via-gray-900 to-black shadow-md hover:shadow-lg transform hover:scale-105 transition-transform duration-300">
+                {/* Decoración del borde */}
+                <div className="absolute inset-0 border-2 border-white rounded-lg opacity-70 pointer-events-none"></div>
+
+                {/* Imagen de la poción */}
+                <img
+                    className="w-[80%] mx-auto mt-6 rounded-md border border-gray-600 shadow"
+                    src={image}
+                    alt={`${name}`}
+                />
+
+                {/* Contenido de texto */}
+                <div className="absolute bottom-6 left-6 right-6 text-center">
+                    <h2 className="font-serif text-white text-2xl tracking-wide uppercase">
+                        {name}
+                    </h2>
+                    <p className="text-gray-300 text-base mt-2">
+                        <span className="text-gray-400 font-medium">Rarity:</span>{' '}
+                        <span className="text-white">{rarity}</span>
+                    </p>
+                    <p className="text-gray-300 text-base">
+                        <span className="text-gray-400 font-medium">Dropped by:</span>{' '}
+                        <span className="text-white">{dropedBy}</span>
+                    </p>
+                    <p className="text-gray-300 text-base">
+                        <span className="text-gray-400 font-medium">Drop Rate:</span>{' '}
+                        <span className="text-white">{dropPercent}</span>
+                    </p>
                 </div>
+
             </div>
         </div>
     );
+};
 
-}
 export default PotionCard;
