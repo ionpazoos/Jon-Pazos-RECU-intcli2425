@@ -1,4 +1,4 @@
-import { MegaEpicFortress,villager } from "../types/MegaEpicFortress";
+import { MegaEpicFortress, villager } from "../types/MegaEpicFortress";
 
 type Tower = {
   name: string,
@@ -30,11 +30,23 @@ export const countVillagersByProfession = (fortress: MegaEpicFortress): Record<s
   const roles = fortress.inhabitants.roles;
   for (let i = 0; i < roles.length; i++) {
     if (roles[i].role == "Villager") {
-      const  villagers: villager = roles[i] as villager;
+      const villagers: villager = roles[i] as villager;
       villagers.professions.forEach(profession => {
         professions[profession.type] = profession.count;
       });
     }
   }
   return professions;
+}
+
+export const getAllWeapons = (fortress: MegaEpicFortress): string[] => {
+  const towers = fortress.defenses.towers;
+  let weapons: string[] = [];
+  for (let i = 0; i < towers.length; i++) {
+    if (!weapons.some(weapon => weapon == towers[i].armament.weaponType)) {
+      weapons.push(towers[i].armament.weaponType)
+    }
+  
+  }
+  return weapons;
 }
