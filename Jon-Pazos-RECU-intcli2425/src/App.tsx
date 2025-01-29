@@ -1,52 +1,20 @@
-import { potions } from './data/data'
+import { countVillagersByProfession } from './helpers/helpers'
+import { megaEpicFortress } from './data/data';
+import Professions from './components/Profesions';
 import './App.css'
-import Potionlist from './components/PotionList'
-import FiltersBox from './components/filtersBox'
-import { useState } from 'react';
+import WeaponFilter from './components/WeaponFilter';
+import Display from './components/Display';
 
 function App() {
-  const [filters, setFilters] = useState({
-    rarity: '',
-    dropChance: '',
-    boss: '',
-});
-const [filteredPotions, setfilteredPotions] = useState(potions);
 
-const filterPotions = (potions: Potion[], filters: { rarity: string; dropChance: string; boss: string }) => {
-  return potions.filter((potion) => {
-      // Filtrar por rareza
-      const rarityMatch = filters.rarity ? potion.rarity === filters.rarity : true;
-
-      // Filtrar por porcentaje mínimo de drop
-      const dropChanceMatch = filters.dropChance
-          ? parseFloat(potion.meta.availability.drop_rate.chance) >= parseFloat(filters.dropChance)
-          : true;
-
-      // Filtrar por jefe
-      const bossMatch = filters.boss
-          ? potion.meta.availability.drop_rate.boss.toLowerCase().includes(filters.boss.toLowerCase())
-          : true;
-
-      return rarityMatch && dropChanceMatch && bossMatch;
-  });
-};
-
-const handleFilterChange = (filterName: string, value: string) => {
-    if (filterName === 'reset') {
-        setFilters({ rarity: '', dropChance: '', boss: '' });
-    } else {
-        setFilters({ ...filters, [filterName]: value });
-        setfilteredPotions(filterPotions(potions, filters));
-    }
-};
-
-
+  const professionsAndCount = countVillagersByProfession(megaEpicFortress);
+  
   return (
     <>
-    <div className='mb-10'>
-    <Potionlist potions={filteredPotions} />
-    </div>
-    <FiltersBox onFilterChange={handleFilterChange} />
+    <WeaponFilter Weapons={[]} />
+    <Professions profesions={professionsAndCount} />
+    <Display DislayInfo={[]}/>
+
     </>
   )
 }
