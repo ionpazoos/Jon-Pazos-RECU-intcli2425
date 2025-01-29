@@ -11,20 +11,20 @@ type Props = {
 
 const DisplayWeapons: React.FC<Props> = ({ towersInfo }) => {
   return (
-    <div className="mt-10 p-4 bg-gray-800 text-white rounded-lg shadow-lg">
-       (
-        <ul className="list-disc pl-5">
+    <div className=" absolute mt-10  right-10 top-[20%] ">
+       
+        <ul className="list-disc relative right-10">
           {towersInfo.map((tower, index) => (
             <li key={index}>
-              <ul>
+             
                 {tower.guards.map((guard, idx) => (
                   <li key={idx}>{guard}</li>
                 ))}
-              </ul>
+        
             </li>
           ))}
         </ul>
-      )
+      
     </div>
   );
 };
